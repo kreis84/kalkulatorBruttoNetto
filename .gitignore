@@ -1,0 +1,6 @@
+js/angular.min.js
+js/angular-route.js
+node_modules/
+dist/
+app/js/angular*
+app/css/
