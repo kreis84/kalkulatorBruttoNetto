@@ -28,12 +28,13 @@
 		<input type="button" ng-click='getNetto()' value="OBLICZ">
 	</form>
 	<div class="result" ng-show='showResult'>
-		<p>netto {{result.netto}}</p>
-		<p>podatek {{result.podatekDochodowy}}</p>
-		<p>zdrowotne {{result.skladkaZdrowotna}}</p>
-		<p>emerytalna {{result.skladkaEmerytalna}}</p>
-		<p>chorobowa {{result.skladkaChorobowa}}</p>
-		<p>rentowa {{result.skladkaRentowa}}</p>
+		<p>Stawka brutto<span>{{brutto}} zł</span></p>
+		<p>Zaliczka podatku dochodowego <span>-{{result.podatekDochodowy}} zł</span></p>
+		<p>Ubezpieczenie zdrowotne <span>-{{result.skladkaZdrowotna}} zł</span></p>
+		<p>Ubezpieczenie emerytalne <span>-{{result.skladkaEmerytalna}} zł</span></p>
+		<p>Ubezpieczenie chorobowe <span>-{{result.skladkaChorobowa}} zł</span></p>
+		<p>Składka rentowa <span>-{{result.skladkaRentowa}} zł</span></p>
+		<p  class='stawkaNetto'>Stawka netto <span>{{result.netto}} zł</span></p>
 	</div>
 </main>
 	

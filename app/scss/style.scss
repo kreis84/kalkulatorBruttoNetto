@@ -1,6 +1,6 @@
 $backgroundColor: #428aff;
 $fontLightColor: #efefef;
-$fontDarkColor: #535352;
+$fontDarkColor: #7e7e7e;
 *{
 	margin:0 ;
 	padding: 0;
@@ -11,11 +11,6 @@ $fontDarkColor: #535352;
 body
 {
 	font-size: 16px;
-}
-
-button
-{
-
 }
 
 .center
@@ -96,6 +91,27 @@ main
 			transition: all 0.5s;
 			font-size: 0.8em;
 			margin-top: 5px;
+		}
+	}
+
+	.result
+	{
+		transition: all 0.5s;
+		max-height: 180px;
+		overflow: hidden;
+		p 
+		{
+			border-bottom: 1px solid gray;
+			padding: 3px;
+
+			span 
+			{
+				float: right;
+			}
+		}
+		.stawkaNetto
+		{
+			font-size: 1.1em;
 		}
 	}
 }
