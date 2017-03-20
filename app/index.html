@@ -6,21 +6,40 @@
 	<link rel="stylesheet" href="css/style.css">
 	<!-- endbuild -->
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
 </head>
 <body>
-	<main ng-controller='bruttoNetto'>
-		<input type="text" ng-model='brutto' placeholder="put btutto">
-		<button ng-click='getNetto()'></button>
+<header class='center'>
+	<p>KALKULATOR BRUTTO-NETTO</p>
+</header>
+<main class='center' ng-controller='bruttoNetto'>
+	<form  onsubmit="return false">	
+		<input type="text" ng-model='brutto' placeholder="PODAJ PENSJĘ BRUTTO" ng-keyup='getNetto($event)'>
+		<p class="error" ng-show='showError'>Musisz podać liczbę nieujemną.</p>
+		<p class='koszty' ng-click='showCost = !showCost'>WYBIERZ KOSZT UZYSKANIA PRZYCHODU</p>
+		<div class="koszt" ng-show='showCost'>
+			<label><input type="radio" name='costs' ng-model='miejscowy' value='miejscowy' checked>
+				PRACOWNIK MIEJSCOWY
+			</label>
+			<label ><input type="radio" name='costs' ng-model='miejscowy' value = 'zamiejscowy'>
+				PRACOWNIK DOJEŻDŻAJĄCY
+			</label>
+		</div>
+		<input type="button" ng-click='getNetto()' value="OBLICZ">
+	</form>
+	<div class="result" ng-show='showResult'>
 		<p>netto {{result.netto}}</p>
 		<p>podatek {{result.podatekDochodowy}}</p>
 		<p>zdrowotne {{result.skladkaZdrowotna}}</p>
 		<p>emerytalna {{result.skladkaEmerytalna}}</p>
 		<p>chorobowa {{result.skladkaChorobowa}}</p>
 		<p>rentowa {{result.skladkaRentowa}}</p>
-	</main>
+	</div>
+</main>
 	
 </body>
 <script type="text/javascript" src="js/angular.min.js"> </script>
+<script type="text/javascript" src="js/angular-animate.min.js"> </script>
 <!-- build:js js/app.js -->
 <script type="text/javascript" src="js/app.js"> </script>
 <script type="text/javascript" src="js/route.js"> </script>

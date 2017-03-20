@@ -1,1 +1,1 @@
-angular.module('git', []); 
+angular.module('git', ['ngAnimate']); 

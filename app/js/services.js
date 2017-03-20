@@ -2,7 +2,7 @@ angular.module('git')
 
 .factory('bruttoNettoFactory', function()
 {
-	var kwotaWolnaOdPodatku = 46.33,
+	let kwotaWolnaOdPodatku = 46.33,
 		progPodatkowy = 85528,
 		kosztUzyskania, skEmerytalna, skChororbowa, skRentowa,
 		podstUbZdrowotne, skUbZdrowotne,
@@ -12,7 +12,7 @@ angular.module('git')
 		drugaSkZdrowotna,
 		netto = 0;
 
-	var _calculate = function(brutto)
+	let _calculate = function(brutto)
 	{
 		skEmerytalna = (brutto * 0.0976);//.toFixed(2);
 		skRentowa = (brutto * 0.015);//.toFixed(2);
