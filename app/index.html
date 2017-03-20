@@ -8,8 +8,17 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 </head>
 <body>
-
-
+	<main ng-controller='bruttoNetto'>
+		<input type="text" ng-model='brutto' placeholder="put btutto">
+		<button ng-click='getNetto()'></button>
+		<p>netto {{result.netto}}</p>
+		<p>podatek {{result.podatekDochodowy}}</p>
+		<p>zdrowotne {{result.skladkaZdrowotna}}</p>
+		<p>emerytalna {{result.skladkaEmerytalna}}</p>
+		<p>chorobowa {{result.skladkaChorobowa}}</p>
+		<p>rentowa {{result.skladkaRentowa}}</p>
+	</main>
+	
 </body>
 <script type="text/javascript" src="js/angular.min.js"> </script>
 <!-- build:js js/app.js -->
