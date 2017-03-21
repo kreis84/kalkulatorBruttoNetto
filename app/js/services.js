@@ -4,7 +4,7 @@ angular.module('git')
 {
 	let kwotaWolnaOdPodatku = 46.33,
 		progPodatkowy = 85528,
-		kosztUzyskania, skEmerytalna, skChororbowa, skRentowa,
+		kosztyUzyskania, skEmerytalna, skChorobowa, skRentowa,
 		podstUbZdrowotne, skUbZdrowotne,
 		podstZalPodDochodowy, 
 		procentPodatekDochodowy,
@@ -38,7 +38,31 @@ angular.module('git')
 			skladkaRentowa: skRentowa.toFixed(2),
 			skladkaZdrowotna: skUbZdrowotne.toFixed(2)
 		};
+	}
 
+	function _calculateEmployer(brutto, wypadkowe)
+	{
+		let ubEmerytalne,
+			ubRentowe,
+			ubWypadkowe,
+			skFundPracy,
+			skFGSP;
+			
+		ubEmerytalne = brutto*0.0976;
+		ubRentowe = brutto * 0.065;
+		ubWypadkowe = brutto * (wypadkowe / 100);
+		skFundPracy = brutto * 0.0245;
+		skFGSP = brutto * 0.001;
+
+		return{
+			ubezpieczenieEmerytalne: ubEmerytalne.toFixed(2),
+			ubezpieczenieRentowe: ubRentowe.toFixed(2),
+			ubezpieczenieWypadkowe: ubWypadkowe.toFixed(2),
+			skladkaFunduszPracy: skFundPracy.toFixed(2),
+			skladkaFGSP: skFGSP.toFixed(2),
+			laczneKoszty: (brutto+ubEmerytalne + ubRentowe + ubWypadkowe 
+							+ skFundPracy + skFGSP).toFixed(2)
+		};
 	}
 
 	return{
@@ -48,6 +72,11 @@ angular.module('git')
 				kosztyUzyskania = 111.25;
 			else kosztyUzyskania = 139.06;
 			return _calculate(brutto);
+		},
+
+		calculateEmployer: function(brutto, wypadkowe)
+		{
+			return _calculateEmployer(brutto, wypadkowe);
 		}
 	}
 });

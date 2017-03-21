@@ -1,11 +1,15 @@
 angular.module('git')
-.controller('bruttoNetto', function($scope, bruttoNettoFactory)
+.controller('bruttoNetto', ['$scope','bruttoNettoFactory',function($scope, bruttoNettoFactory)
 {
-	$scope.brutto;
+	$scope.brutto;//2000;
 	$scope.result = {};
+	$scope.employerResult = {};
 	$scope.showError = false;
+	$scope.showWypadkoweError = false;
 	$scope.showResult = false;
 	$scope.miejscowy = 'miejscowy';
+	$scope.showEmployerResult = false;
+	$scope.wypadkowe = 1.8;
 
 	$scope.$watch('brutto', ()=>{
 		$scope.showError = false;
@@ -16,13 +20,28 @@ angular.module('git')
 		}
 	});
 
+	$scope.$watch('wypadkowe', function()
+	{
+		$scope.showWypadkoweError = false;
+		$scope.wypadkowe = String($scope.wypadkowe).replace(',','.');
+		$scope.getEmployerCosts();
+	});
+
+	$scope.$watch('miejscowy', function()
+	{
+		$scope.getNetto();
+	});
+
 	$scope.getNetto = function(event)
 	{
-		//event.preventDefault();
 		if(event!==undefined)
 		{
-			event.preventDefault();
 			if(event.keyCode !== 13) return;
+		}
+		if($scope.brutto < 800) 
+		{
+			alert('Minimalna kwota do obliczeń to 800.');
+			return;
 		}
 
 		if(!$scope.showError && $scope.brutto !== undefined && $scope.brutto != '')
@@ -31,4 +50,12 @@ angular.module('git')
 			$scope.showResult = true;
 		}
 	}
-});
+
+	$scope.getEmployerCosts = function()
+	{
+		if(!isNaN($scope.wypadkowe) && ($scope.wypadkowe !== undefined))
+			$scope.employerResult = bruttoNettoFactory.calculateEmployer(parseFloat($scope.brutto), $scope.wypadkowe);
+		else $scope.showWypadkoweError = true;
+	}
+
+}]);

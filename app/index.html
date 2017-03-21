@@ -15,9 +15,9 @@
 <main class='center' ng-controller='bruttoNetto'>
 	<form  onsubmit="return false">	
 		<input type="text" ng-model='brutto' placeholder="PODAJ PENSJĘ BRUTTO" ng-keyup='getNetto($event)'>
-		<p class="error" ng-show='showError'>Musisz podać liczbę nieujemną.</p>
+		<p class="error ng-anim" ng-show='showError'>Musisz podać liczbę nieujemną.</p>
 		<p class='koszty' ng-click='showCost = !showCost'>WYBIERZ KOSZT UZYSKANIA PRZYCHODU</p>
-		<div class="koszt" ng-show='showCost'>
+		<div class="koszt ng-anim" ng-show='showCost'>
 			<label><input type="radio" name='costs' ng-model='miejscowy' value='miejscowy' checked>
 				PRACOWNIK MIEJSCOWY
 			</label>
@@ -25,7 +25,7 @@
 				PRACOWNIK DOJEŻDŻAJĄCY
 			</label>
 		</div>
-		<input type="button" ng-click='getNetto()' value="OBLICZ">
+		<input type="button" ng-click='getNetto(); showEmployerResult = false' value="OBLICZ">
 	</form>
 	<div class="result" ng-show='showResult'>
 		<p>Stawka brutto<span>{{brutto}} zł</span></p>
@@ -35,6 +35,23 @@
 		<p>Ubezpieczenie chorobowe <span>-{{result.skladkaChorobowa}} zł</span></p>
 		<p>Składka rentowa <span>-{{result.skladkaRentowa}} zł</span></p>
 		<p  class='stawkaNetto'>Stawka netto <span>{{result.netto}} zł</span></p>
+	</div>
+	<input type="button" value='POKAŻ KOSZTY PRACODAWCY' ng-click='getEmployerCosts(); showEmployerResult = true' ng-show='showResult'>
+	<div class="employerResult">
+		<div class="employerCosts ng-anim" ng-show='showEmployerResult'>
+			<div class="wypadkowe ng-anim" ng-click='showWypadkowe = !showWypadkowe'>ZMIEŃ STAWKĘ UBEZPIECZENIA WYPADKOWEGO</div>
+			<label class='ng-anim' ng-show='showWypadkowe'>Ubezpieczenie wypadkowe: <input type="text" ng-model='wypadkowe'>%</label>
+			<p class="error ng-anim" ng-show='showWypadkoweError'>Musisz podać liczbę nieujemną.</p>
+			<div class="resultEmployer">
+				<p>Stawka brutto<span>{{brutto}}</span></p>
+				<p>Ubezpieczenie emerytalne<span>{{employerResult.ubezpieczenieEmerytalne}}</span></p>
+				<p>Ubezpieczenie rentowe<span>{{employerResult.ubezpieczenieRentowe}}</span></p>
+				<p>Ubezpieczenie wypadkowe<span>{{employerResult.ubezpieczenieWypadkowe}}</span></p>
+				<p>Składka na fundusz pracy<span>{{employerResult.skladkaFunduszPracy}}</span></p>
+				<p>Składka na FGŚP<span>{{employerResult.skladkaFGSP}}</span></p>
+				<p class='totalCost'>Całkowity koszt pracodawcy<span>{{employerResult.laczneKoszty}}</span></p>
+			</div>
+		</div>
 	</div>
 </main>
 	

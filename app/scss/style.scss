@@ -4,7 +4,7 @@ $fontDarkColor: #7e7e7e;
 *{
 	margin:0 ;
 	padding: 0;
-	font-family: 'Russo One', sans-serif;;
+	font-family: 'Russo One', sans-serif;
 	color: $fontDarkColor ;
 }
 
@@ -32,6 +32,36 @@ header
 	}
 }
 
+input[type=button]
+{
+	width: 100%;
+	height: 25px;
+	border: 0;
+	cursor: pointer;
+	&:focus {outline:0;}
+	&:hover {
+		background-color: lightgray;
+	};
+}
+
+.koszty, .wypadkowe
+{
+	background-color: $backgroundColor;
+	color: $fontLightColor;
+	cursor: pointer;
+	margin-top: 10px;
+	padding: 5px;
+}
+
+.error
+{
+	background-color: pink;
+	color: $fontLightColor;
+	max-height: 20px;
+	color: $fontDarkColor;
+	padding:3px;
+}
+
 main
 {
 	form
@@ -39,25 +69,6 @@ main
 		margin-top: 30px;
 		display: flex;
 		flex-direction: column;
-		.error
-		{
-			background-color: pink;
-			color: $fontLightColor;
-			max-height: 20px;
-			transition: all 0.5s;
-		}
-		input[type=button]
-		{
-			width: 100%;
-			height: 25px;
-			border: 0;
-			cursor: pointer;
-			&:focus {outline:0;}
-			&:hover {
-				background-color: lightgray;
-			};
-		}
-
 		input[type=text]
 		{
 			&:focus {outline:0;}
@@ -73,18 +84,8 @@ main
 			flex-direction: column;
 			margin-bottom: 10px;
 			max-height: 45px;
-			transition: all 0.5s;
-			/*opacity: 0;*/
 		}
 
-		.koszty
-		{
-			background-color: $backgroundColor;
-			color: $fontLightColor;
-			cursor: pointer;
-			margin-top: 10px;
-			padding: 5px;
-		}
 		label
 		{
 			max-height: 20px;
@@ -111,9 +112,59 @@ main
 		}
 		.stawkaNetto
 		{
-			font-size: 1.1em;
+			font-size: 1.2em;
 		}
 	}
+}
+
+.employerResult
+{
+	.employerCosts
+	{
+		max-height: 285px;
+
+		.wypadkowe 
+		{
+			max-height: 20px;
+		}
+
+		label
+		{
+			padding: 5px;
+			display: block;
+			max-height: 20px;
+			
+			input
+			{
+				width: 50px;
+				text-align: right;
+			}
+		}
+
+		.resultEmployer
+		{
+			p 
+			{
+				border-bottom: 1px solid gray;
+				padding: 3px;
+				&.totalCost
+				{
+					font-size: 1.2em;
+				}
+
+				span 
+				{
+					float: right;
+				}
+			}
+		}
+	}
+}
+
+.ng-anim
+{
+	overflow: hidden;
+	transition: all 0.5s;
 }
 
 .ng-hide
